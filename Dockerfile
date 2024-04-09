@@ -13,7 +13,6 @@ RUN set -x; \
             node-clean-css \
             python-pyinotify \
             python-renderpm \
-            python-support \
         && curl -o wkhtmltox.deb -SL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-wheezy-amd64.deb \
         && dpkg --force-depends -i wkhtmltox.deb \
         && apt-get -y install -f --no-install-recommends \
