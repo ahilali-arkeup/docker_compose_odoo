@@ -1,20 +1,5 @@
-FROM debian:bullseye-slim
-
-RUN set -x; \
-        apt-get update \
-        && apt-get install -y --no-install-recommends \
-            ca-certificates \
-            curl \
-            nodejs \
-            npm \
-            python-support \
-            python-pyinotify \
-        && npm install -g less less-plugin-clean-css \
-        && ln -s /usr/bin/nodejs /usr/bin/node \
-        && curl -o wkhtmltox.deb -SL http://nightly.odoo.com/deb/jessie/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb \
-        && echo '40e8b906de658a2221b15e4e8cd82565a47d7ee8 wkhtmltox.deb' | sha1sum -c - \
-        && dpkg --force-depends -i wkhtmltox.deb \
-        && apt-get -y install -f --no-install-recommends \
+FROM debian:jessie
+MAINTAINER Odoo S.A. <info@odoo.com>
 
 ENV ODOO_VERSION 8.0
 ENV ODOO_RELEASE 20171009
