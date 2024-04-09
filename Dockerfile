@@ -1,6 +1,24 @@
 FROM debian:jessie
 MAINTAINER Odoo S.A. <info@odoo.com>
 
+
+# Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+RUN set -x; \
+        apt-get update \
+        && apt-get install -y --no-install-recommends \
+            ca-certificates \
+            curl \
+            node-less \
+            node-clean-css \
+            python-pyinotify \
+            python-renderpm \
+            python-support \
+        && curl -o wkhtmltox.deb -SL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-wheezy-amd64.deb \
+        && dpkg --force-depends -i wkhtmltox.deb \
+        && apt-get -y install -f --no-install-recommends \
+        && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
+        && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
+
 ENV ODOO_VERSION 8.0
 ENV ODOO_RELEASE 20171001
 RUN set -x; \
