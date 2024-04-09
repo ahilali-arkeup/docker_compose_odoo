@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:bullseye-slim
 
 RUN set -x; \
         apt-get update \
