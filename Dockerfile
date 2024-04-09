@@ -3,6 +3,7 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+RUN apt-get update
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
